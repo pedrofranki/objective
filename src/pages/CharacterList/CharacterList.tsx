@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./styles";
+import Pagination from "../../components/Pagination";
 
 const CharacterList = () => {
   return (
@@ -42,6 +43,7 @@ const CharacterList = () => {
           </div>
         </div>
       </div>
+      <Pagination pagesCount={[1, 2, 3, 4, 5]} />
     </S.Container>
   );
 };
