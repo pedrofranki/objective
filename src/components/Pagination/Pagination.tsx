@@ -21,7 +21,7 @@ const Pagination = ({ pagesCount }: Props) => {
       ></span>
 
       {pagesCount.map((_: any, index: number) => (
-        <S.PageNumber>{index + 1}</S.PageNumber>
+        <S.PageNumber key={index}>{index + 1}</S.PageNumber>
       ))}
       <span
         className="iconify"

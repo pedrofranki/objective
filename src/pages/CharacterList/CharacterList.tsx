@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./styles";
 import Pagination from "../../components/Pagination";
+import CardCharacter from "../../components/CardCharacter";
+import { getCharactersAsync } from "../../services";
 
 const CharacterList = () => {
+  const [charactersList, setCharacterList] = useState<I.Character[]>();
+
+  useEffect(() => {
+    (async function getCharacters() {
+      await getCharactersAsync({ limit: 10 })
+        .then((resp) => {
+          setCharacterList(resp.data.data.results as I.Character[]);
+        })
+        .catch((e) => {
+          throw new Error(e);
+        });
+    })();
+  }, []);
+
   return (
     <S.Container>
       <div className="title-container">
@@ -24,24 +40,15 @@ const CharacterList = () => {
           <span className="header-item">Séries</span>
           <span className="header-item">Eventos</span>
         </div>
-        <div className="character-list">
-          <div className="character-card">
-            <div>
-              <img src="https://picsum.photos/48" />
-              <h6 className="character-name">Amora</h6>
-            </div>
-            <ul className="events-list">
-              <li>Iron man</li>
-              <li>Old Man Hawkeye</li>
-              <li>Fantastic Four</li>
-            </ul>
-            <ul className="events-list">
-              <li>Avx</li>
-              <li>Demon in the Bottle</li>
-              <li>Dysnasty</li>
-            </ul>
-          </div>
-        </div>
+        {charactersList?.map((char) => (
+          <CardCharacter
+            key={char.id}
+            name={char.name}
+            thumbnail={`${char.thumbnail.path}.${char.thumbnail.extension}`}
+            events={char.events.items}
+            series={char.series.items}
+          />
+        ))}
       </div>
       <Pagination pagesCount={[1, 2, 3, 4, 5]} />
     </S.Container>
