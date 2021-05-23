@@ -10,6 +10,7 @@ export const Container = styled.div`
   box-shadow: 0px 0px 5px #00000033;
 
   padding: 24px;
+  margin-bottom: 8px;
 
   & > div {
     display: flex;
