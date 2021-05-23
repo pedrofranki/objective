@@ -8,10 +8,13 @@ html {
   --container-width: 80%;
 }
 
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
   background-color: var(--dark-snow);
   font-family: "PT Sans Caption", sans-serif;
-  color: var(--dark-smoke)
+  color: var(--dark-smoke);
 }
