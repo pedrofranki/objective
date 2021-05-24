@@ -4,6 +4,7 @@ import {
   getCharacterSeries,
   getCharacterComics,
 } from "../../services";
+import * as S from "./styles";
 import { useParams } from "react-router-dom";
 
 const CharacterDetails = () => {
@@ -29,22 +30,30 @@ const CharacterDetails = () => {
   }, []);
 
   return (
-    <div>
-      <img
-        src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
-      />
-      {comics.map((comic: any) => (
+    <S.Container>
+      <S.Header>
+        <img
+          src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
+          alt="a"
+        />
         <div>
-          <img
-            src={`${comic?.thumbnail?.path}.${comic?.thumbnail?.extension}`}
-          />
-
-          <img
-            src={`${comic?.images[0]?.path}.${comic?.images[0]?.extension}`}
-          />
+          <h1 className="title">{character?.name}</h1>
+          <p className="description">{character?.description}</p>
         </div>
-      ))}
-    </div>
+      </S.Header>
+      <h2>Comics</h2>
+      <S.List>
+        {comics?.map((comic: any) => (
+          <S.ComicCard>
+            <img
+              src={`${comic?.thumbnail?.path}.${comic?.thumbnail?.extension}`}
+              alt="a"
+            />
+            <h5 className="card-title">{comic?.title}</h5>
+          </S.ComicCard>
+        ))}
+      </S.List>
+    </S.Container>
   );
 };
 

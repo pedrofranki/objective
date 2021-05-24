@@ -1,9 +1,10 @@
 import axios from "axios";
+import getHash, { publicKey, timestamp } from "../utils/getHash";
 
 const BASE_URL = "http://gateway.marvel.com/v1/public";
 
-const apikey = process.env.REACT_APP_PUBLIC;
-const hash = process.env.REACT_APP_API_KEY;
+const apikey = publicKey;
+const hash = getHash();
 
 export interface Filter {
   name?: string;
@@ -13,7 +14,7 @@ export interface Filter {
 
 export const getCharactersAsync = ({ name, limit, offset }: Filter) => {
   return axios.get(`${BASE_URL}/characters`, {
-    params: { apikey, name, limit, offset, ts: 1, hash },
+    params: { apikey, name, limit, offset, ts: timestamp, hash },
   });
 };
 
@@ -46,4 +47,6 @@ export const getCharacterComics = (idCharacter: string) => {
     },
   });
 };
+
+
 
