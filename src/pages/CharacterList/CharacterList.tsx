@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import * as S from "./styles";
 import Pagination from "../../components/Pagination";
 import CardCharacter from "../../components/CardCharacter";
@@ -12,7 +12,7 @@ const CharacterList = () => {
   const [filters, setFilters] = useState<Filter>({ limit: 10, offset: 1 });
   const [page, setPage] = useState(1);
 
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     getCharacters();
@@ -40,13 +40,13 @@ const CharacterList = () => {
     setFilters((filter) => ({ ...filter, name: e.target.value }));
   }
 
-  function handleCharacterCardClick(idCaracter: number){
-    history.push(`/character/${idCaracter}`)
+  function handleCharacterCardClick(idCaracter: number) {
+    history.push(`/character/${idCaracter}`);
   }
 
   return (
     <S.Container>
-      <div className="title-container">
+      <S.Header>
         <h1>Busca de personagens</h1>
         <h3>Nome de personagem</h3>
 
@@ -62,7 +62,7 @@ const CharacterList = () => {
             onChange={handleSearchChange}
           />
         </div>
-      </div>
+      </S.Header>
 
       <div className="list-container">
         <div className="header-container">
@@ -73,17 +73,18 @@ const CharacterList = () => {
           <span className="header-item">Eventos</span>
         </div>
 
-        {charactersList && charactersList?.map((char) => (
-          <CardCharacter
-            id={char.id}
-            key={char.id}
-            name={char.name}
-            thumbnail={`${char.thumbnail.path}.${char.thumbnail.extension}`}
-            events={char.events.items}
-            series={char.series.items}
-            onClickCard={handleCharacterCardClick}
-          />
-        ))}
+        {charactersList &&
+          charactersList?.map((char) => (
+            <CardCharacter
+              id={char.id}
+              key={char.id}
+              name={char.name}
+              thumbnail={`${char.thumbnail.path}.${char.thumbnail.extension}`}
+              events={char.events.items}
+              series={char.series.items}
+              onClickCard={handleCharacterCardClick}
+            />
+          ))}
       </div>
 
       <Pagination

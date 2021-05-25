@@ -15,10 +15,16 @@ export const Header = styled.div`
   flex-direction: row;
   margin-bottom: 50px;
 
+  @media (max-width: 650px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
   img {
     width: 200px;
     height: 200px;
-    margin-right: 16px;
+    margin: 16px;
   }
 
   & > div {
@@ -28,7 +34,7 @@ export const Header = styled.div`
 
     display: flex;
     flex-direction: column;
-    width: 60ch;
+    max-width: 60ch;
     line-height: 24px;
   }
 `;
@@ -39,27 +45,31 @@ export const List = styled.div`
 
   display: grid;
   grid-template-columns: repeat(4, 3fr);
+  align-items: center;
   grid-gap: 16px;
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const ComicCard = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
   background-color: var(--snow);
   text-align: center;
   box-shadow: 0px 0px 5px #00000033;
 
   img {
-    width: 125px;
-    height: 135px;
-    margin-right: 16px;
+    width: 100%;
+    margin: 12px 0;
   }
 
   h5 {
     line-height: 20px;
+    font-size: 18px;
   }
 `;

@@ -6,6 +6,7 @@ html {
   --snow: #f5f5f5;
   --border: #00000033;
   --container-width: 80%;
+  --mobile-width: 100%;
 }
 
 * {
